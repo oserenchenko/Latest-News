@@ -43,7 +43,7 @@ app.get("/scrape", function (req, res) {
     // Now, we grab every div with a class of card-content
     $("article.item").each(function (i, element) {
       var title = $(element).children(".item-info").children(".title").children("a").text();
-      var dep = $(element).children(".item-info").children(".slug-wrap").children(".slug").children("a").text();
+      var type = $(element).children(".item-info").children(".slug-wrap").children(".slug").children("a").text();
       var link = $(element).children(".item-info").children(".title").children("a").attr("href");
       var dateSum = $(element).children(".item-info").children(".teaser").children("a").text();
       var image = $(element).children(".item-image").children(".imagewrap").children("a").children("img").attr("src");
@@ -52,7 +52,6 @@ app.get("/scrape", function (req, res) {
       var date = dateSumSplit[0].trim();
       var summary = dateSumSplit[1].trim();
 
-      console.log(image);
       // // Add the text and href of every link, and save them as properties of the result object
       // result.title = $(this)
       //   .children("a")
