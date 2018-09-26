@@ -8,7 +8,7 @@ var request = require("request");
 var cheerio = require("cheerio");
 
 // Require all models
-// var db = require("./models");
+var db = require("./models");
 
 var PORT = process.env.PORT || 3000;
 
@@ -35,41 +35,34 @@ mongoose.connect(MONGODB_URI);
 
 //When users visit the website it automatically scrapes news articles
 app.get("/scrape", function (req, res) {
-  request("https://www.npr.org/sections/news/", function(error, response, html) {
+  request("https://www.npr.org/sections/news/", function (error, response, html) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(html);
-    var results = []; 
+    var result = {};
 
     // Now, we grab every div with a class of card-content
     $("article.item").each(function (i, element) {
-      var title = $(element).children(".item-info").children(".title").children("a").text();
-      var type = $(element).children(".item-info").children(".slug-wrap").children(".slug").children("a").text();
-      var link = $(element).children(".item-info").children(".title").children("a").attr("href");
+      result.title = $(element).children(".item-info").children(".title").children("a").text();
+      result.link = $(element).children(".item-info").children(".title").children("a").attr("href");
+      result.type = $(element).children(".item-info").children(".slug-wrap").children(".slug").children("a").text();
+
       var dateSum = $(element).children(".item-info").children(".teaser").children("a").text();
-      var image = $(element).children(".item-image").children(".imagewrap").children("a").children("img").attr("src");
-
       var dateSumSplit = dateSum.split("•");
-      var date = dateSumSplit[0].trim();
-      var summary = dateSumSplit[1].trim();
+      result.date = dateSumSplit[0].trim();
+      result.summary = dateSumSplit[1].trim();
 
-      // // Add the text and href of every link, and save them as properties of the result object
-      // result.title = $(this)
-      //   .children("a")
-      //   .text();
-      // result.link = $(this)
-      //   .children("a")
-      //   .attr("href");
+      result.image = $(element).children(".item-image").children(".imagewrap").children("a").children("img").attr("src");
 
-      // Create a new Article using the `result` object built from scraping
-      //   db.Article.create(result)
-      //     .then(function (dbArticle) {
-      //       // View the added result in the console
-      //       console.log(dbArticle);
-      //     })
-      //     .catch(function (err) {
-      //       // If an error occurred, send it to the client
-      //       return res.json(err);
-      //     });
+      //Create a new Article using the `result` object built from scraping
+        db.Article.create(result)
+          .then(function (dbArticle) {
+            // View the added result in the console
+            console.log(dbArticle);
+          })
+          .catch(function (err) {
+            // If an error occurred, send it to the client
+            return res.json(err);
+          });
     });
 
     // If we were able to successfully scrape and save an Article, send a message to the client
