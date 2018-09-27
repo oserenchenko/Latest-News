@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">NPR News Scraper</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -13,6 +14,13 @@
 
 <div class="jumbotron">
   <h1 class="display-4">NPR News Scraper</h1>
-  <p class="lead">Select to scrape the NPR news website and be able to save articles. Read, leave, and delete comments on articles.</p>
+  <p class="lead">Select to scrape the NPR news website and be able to save articles. Read, leave, and delete comments
+    on articles.</p>
   <button type="button" class="btn btn-primary" id="scrape">Scrape Website</button>
+</div>
+
+<div class="articles-displayed">
+  {{#each articles}}
+  <p class="title">{{this.title}}</p>
+  {{/each}}
 </div>

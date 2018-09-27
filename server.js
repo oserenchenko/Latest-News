@@ -41,9 +41,18 @@ mongoose.connect(MONGODB_URI);
 
 
 app.get("/", function (req, res) {
-  res.render("index", {
-    test: "test"
-  });
+  db.Article.find({})
+    .then(function (dbArticle) {
+      res.render("index", {
+        articles: dbArticle
+      });
+    })
+    .catch(function (err) {
+      res.json(err);
+    })
+  // res.render("index", {
+  //   test: "test"
+  // });
 })
 
 
@@ -81,19 +90,6 @@ app.get("/scrape", function (req, res) {
     // If we were able to successfully scrape and save an Article, send a message to the client
     res.send("Scrape Complete");
   })
-})
-
-//getting all articles
-app.get("/articles", function (req, res) {
-  db.Article.find({})
-    .then(function (dbArticle) {
-      res.render("articles", {
-        articles: dbArticle
-      });
-    })
-    .catch(function (err) {
-      res.json(err);
-    })
 })
 
 
