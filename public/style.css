@@ -1,0 +1,24 @@
+.jumbotron {
+  /* background-image: url(images/stack.jpg);
+  background-size: contain; */
+  /* background-repeat: no-repeat; */
+}
+
+.jumbo {
+  margin-left: 150px;
+}
+
+.title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.smallDetail {
+  display: inline;
+  font-size: 12px;
+}
+
+.image {
+  width: 300px;
+}
