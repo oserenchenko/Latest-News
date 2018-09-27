@@ -3,7 +3,6 @@ var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 // Scraping tools
-// var axios = require("axios");
 var request = require("request");
 var cheerio = require("cheerio");
 
@@ -14,6 +13,14 @@ var PORT = process.env.PORT || 3000;
 
 // Initialize Express
 var app = express();
+
+// Set Handlebars.
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({
+  defaultLayout: "main"
+}));
+app.set("view engine", "handlebars");
 
 // Use morgan logger for logging requests
 app.use(logger("dev"));
@@ -31,6 +38,13 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
+
+
+app.get("/", function (req, res) {
+  res.render("index", {
+    test: "test"
+  });
+})
 
 
 //When users visit the website it automatically scrapes news articles
@@ -54,20 +68,32 @@ app.get("/scrape", function (req, res) {
       result.image = $(element).children(".item-image").children(".imagewrap").children("a").children("img").attr("src");
 
       //Create a new Article using the `result` object built from scraping
-        db.Article.create(result)
-          .then(function (dbArticle) {
-            // View the added result in the console
-            console.log(dbArticle);
-          })
-          .catch(function (err) {
-            // If an error occurred, send it to the client
-            return res.json(err);
-          });
-    });
-
+      db.Article.create(result)
+        .then(function (dbArticle) {
+          // View the added result in the console
+          // console.log(dbArticle);
+        })
+        .catch(function (err) {
+          // If an error occurred, send it to the client
+          return res.json(err);
+        });
+    })
     // If we were able to successfully scrape and save an Article, send a message to the client
     res.send("Scrape Complete");
   })
+})
+
+//getting all articles
+app.get("/articles", function (req, res) {
+  db.Article.find({})
+    .then(function (dbArticle) {
+      res.render("articles", {
+        articles: dbArticle
+      });
+    })
+    .catch(function (err) {
+      res.json(err);
+    })
 })
 
 
