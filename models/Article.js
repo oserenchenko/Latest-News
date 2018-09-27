@@ -14,6 +14,11 @@ var ArticleSchema = new Schema({
       type: String,
       required: true
     },
+    // `saved` is whether or not an article has been saved, default false, boolean type
+    saved: {
+      type: Boolean,
+      default: false
+    },
   // `type` is of type String
   type: {
     type: String

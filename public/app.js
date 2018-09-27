@@ -1,3 +1,4 @@
+//SCRAPE button click
 $(document).on("click", "#scrape", function (event) {
   event.preventDefault();
   // Send the GET request.
@@ -12,4 +13,18 @@ $(document).on("click", "#scrape", function (event) {
       }
     );
   }
+})
+
+//DELETE ALL ARTICLES button click
+$(document).on("click", "#deleteAll", function (event) {
+  event.preventDefault();
+  // Send the GET request.
+  $.ajax("/delete", {
+    type: "GET"
+  }).then(
+    function () {
+      console.log("deleting all articles");
+      window.location.href = "/";
+    }
+  );
 })

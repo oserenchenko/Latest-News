@@ -50,9 +50,6 @@ app.get("/", function (req, res) {
     .catch(function (err) {
       res.json(err);
     })
-  // res.render("index", {
-  //   test: "test"
-  // });
 })
 
 
@@ -90,6 +87,19 @@ app.get("/scrape", function (req, res) {
     // If we were able to successfully scrape and save an Article, send a message to the client
     res.send("Scrape Complete");
   })
+})
+
+//delete all articles button click
+app.get("/delete", function (req, res) {
+  db.Article.deleteMany({})
+    .then(function (dbArticle) {
+      res.render("index", {
+        articles: dbArticle
+      });
+    })
+    .catch(function (err) {
+      res.json(err);
+    })
 })
 
 
