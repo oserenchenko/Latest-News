@@ -15,16 +15,12 @@
 <div class="jumbotron">
   <div class="jumbo">
     <h1 class="display-4">NPR News Scraper</h1>
-    <p class="lead">Select to scrape the NPR news website and be able to save articles. Read, leave, and delete
-      comments
-      on articles.</p>
-    <button type="button" class="btn btn-primary" id="scrape">Scrape Website</button>
-    <button type="button" class="btn btn-danger" id="deleteAll">Delete All Articles</button>
+    <p class="lead">Here are your save articles. Choose to leave a comment.</p>
   </div>
 </div>
 
 <div class="container">
-  <h2>Articles:</h2>
+  <h2>Save Articles:</h2>
   <div class="articles-displayed">
     {{#each articles}}
     <div class="row mt-3 mb-3">
@@ -34,7 +30,7 @@
         <p class="date smallDetail">{{this.date}} | </p>
         <a class="link smallDetail" href={{this.link}}>Read Article</a>
         <p class="summary">{{this.summary}}</p>
-        <button type="button" class="btn btn-info" id="saveArticle" objectID={{this._id}}>Save Article</button>
+        <button type="button" class="btn btn-info" id="commentArticle" objectID={{this._id}}>Comment</button>
       </div>
       <div class="col-md-4">
         <img src={{this.image}} class="image">

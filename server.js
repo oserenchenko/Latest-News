@@ -52,6 +52,20 @@ app.get("/", function (req, res) {
     })
 })
 
+app.get("/saved", function (req, res) {
+  db.Article.find({
+      saved: true
+    })
+    .then(function (dbArticle) {
+      res.render("saved", {
+        articles: dbArticle
+      })
+    })
+    .catch(function (err) {
+      res.json(err);
+    })
+})
+
 
 //When users visit the website it automatically scrapes news articles
 app.get("/scrape", function (req, res) {
@@ -100,6 +114,21 @@ app.get("/delete", function (req, res) {
     .catch(function (err) {
       res.json(err);
     })
+})
+
+//saving articles on button click
+app.put("/save/:id", function (req, res) {
+  var objectID = req.params.id;
+  db.Article.findByIdAndUpdate(objectID, {
+    $set: {
+      saved: true
+    }
+  }, {
+    new: true
+  }, function (err, dbArticle) {
+    if (err) return handleError(err);
+    res.send(dbArticle);
+  });
 })
 
 
