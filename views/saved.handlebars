@@ -35,8 +35,9 @@
       <div class="col-md-4">
         <h5>Comments:</h5>
         <div class="commentsSaved">
-          {{#each comments}}
-
+          {{#each this.comment}}
+          <p>{{this.name}}</p>
+          <p>{{this.message}}</p>
           {{/each}}
         </div>
       </div>
@@ -45,14 +46,14 @@
         <form>
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Name</label>
-            <textarea class="form-control commentName" rows="1"></textarea>
+            <textarea class="form-control commentName" id="{{this._id}}Name" rows="1"></textarea>
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Comment</label>
-            <textarea class="form-control commentMessage" rows="2"></textarea>
+            <textarea class="form-control commentMessage" id="{{this._id}}Message" rows="2"></textarea>
           </div>
         </form>
-        <button type="button" class="btn btn-info btn-sm" id="commentArticle" objectID={{this._id}}>Comment</button>
+        <button type="button" class="btn btn-info btn-sm commentArticle" objectID={{this._id}}>Comment</button>
       </div>
     </div>
     <div class="row">

@@ -58,6 +58,9 @@ app.get("/saved", function (req, res) {
   db.Article.find({
       saved: true
     })
+    .populate({
+      path: "comment"
+    })
     .then(function (dbArticle) {
       res.render("saved", {
         articles: dbArticle
@@ -142,21 +145,19 @@ app.post("/comments/:id", function (req, res) {
       return db.Article.findOneAndUpdate({
         _id: objectID
       }, {
-        comment: dbComment._id
+        $push: {
+          comment: dbComment._id
+        }
       }, {
         new: true
       });
     })
+    .then(function (dbArticle) {
+      res.send(dbArticle);
+    })
     .catch(function (err) {
       res.json(err);
     })
-  // db.Article.findOne({_id: objectID})
-  // .populate("comment")
-  // .then(function(dbArticle) {
-  //   res.render("saved", {
-  //     comments: dbArticle
-  //   })
-  // })
 })
 
 

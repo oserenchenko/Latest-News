@@ -2,8 +2,6 @@
 $(document).on("click", "#scrape", function (event) {
   event.preventDefault();
   // Send the GET request.
-  // if the articles-displayed div is empty, then do an ajax call to scrape the NPR news website
-  // if ($(".articles-displayed").text().length == 1) {
     $.ajax("/scrape", {
       type: "GET"
     }).then(
@@ -12,7 +10,6 @@ $(document).on("click", "#scrape", function (event) {
         window.location.href = "/";
       }
     );
-  // }
 })
 
 //DELETE ALL ARTICLES button click
@@ -45,11 +42,11 @@ $(document).on("click", "#saveArticle", function (event) {
 })
 
 //SAVE ARTICLE button click
-$(document).on("click", "#commentArticle", function (event) {
+$(document).on("click", ".commentArticle", function (event) {
   event.preventDefault();
   var id = $(this).attr("objectID");
-  var name = $(".commentName").val();
-  var message = $(".commentMessage").val();
+  var name = $("#" + id + "Name").val();
+  var message = $("#" + id + "Message").val();
 
   var newComment = {
     name: name,
@@ -63,7 +60,7 @@ $(document).on("click", "#commentArticle", function (event) {
   }).then(
     function () {
       console.log("posting new comment");
-      // window.location.href = "/saved";
+      window.location.href = "/saved";
     }
   );
 })
