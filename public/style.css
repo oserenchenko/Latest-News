@@ -26,3 +26,14 @@
 .imageComment {
   width: 250px;
 }
+
+.commentNameSaved {
+  text-decoration: underline;
+  margin-bottom: 0px;
+}
+
+.commentMessageSaved {
+  font-size: 12px;
+  margin-top: 0px;
+  margin-left: 10px;
+}

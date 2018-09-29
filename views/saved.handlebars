@@ -36,8 +36,8 @@
         <h5>Comments:</h5>
         <div class="commentsSaved">
           {{#each this.comment}}
-          <p>{{this.name}}</p>
-          <p>{{this.message}}</p>
+          <p class="commentNameSaved">{{this.name}}:</p>
+          <p class="commentMessageSaved">"{{this.message}}"</p>
           {{/each}}
         </div>
       </div>
