@@ -36,4 +36,10 @@
   font-size: 12px;
   margin-top: 0px;
   margin-left: 10px;
+  display: inline;
+}
+
+.deleteComment {
+  display: inline;
+  font-size: 8px;
 }

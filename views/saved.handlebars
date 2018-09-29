@@ -37,6 +37,7 @@
         <div class="commentsSaved">
           {{#each this.comment}}
           <p class="commentNameSaved">{{this.name}}:</p>
+          <button type="button" class="btn btn-danger btn-sm deleteComment" objectID = {{this._id}}>X</button>
           <p class="commentMessageSaved">"{{this.message}}"</p>
           {{/each}}
         </div>

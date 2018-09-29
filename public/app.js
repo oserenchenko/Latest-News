@@ -64,3 +64,18 @@ $(document).on("click", ".commentArticle", function (event) {
     }
   );
 })
+
+//DELETE COMMENT button click
+$(document).on("click", ".deleteComment", function (event) {
+  event.preventDefault();
+  var id = $(this).attr("objectID");
+
+  $.ajax("/deletecomment/" + id, {
+    type: "GET"
+  }) .then(
+    function () {
+      console.log("deleting comment");
+      window.location.href = "/saved";
+    }
+  )
+})

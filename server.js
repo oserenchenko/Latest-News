@@ -160,6 +160,18 @@ app.post("/comments/:id", function (req, res) {
     })
 })
 
+app.get("/deletecomment/:id", function(req, res) {
+  var objectID = req.params.id;
+
+  db.Comment.remove({ _id: objectID})
+  .then(function (dbComment) {
+    res.send(dbComment)
+  })
+  .catch(function (err) {
+    res.json(err);
+  })
+})
+
 
 // Start the server
 app.listen(PORT, function () {
