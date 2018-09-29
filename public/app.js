@@ -43,3 +43,27 @@ $(document).on("click", "#saveArticle", function (event) {
     }
   );
 })
+
+//SAVE ARTICLE button click
+$(document).on("click", "#commentArticle", function (event) {
+  event.preventDefault();
+  var id = $(this).attr("objectID");
+  var name = $(".commentName").val();
+  var message = $(".commentMessage").val();
+
+  var newComment = {
+    name: name,
+    message: message
+  }
+  console.log(newComment);
+  //Send the POST request.
+  $.ajax("/comments/" + id, {
+    type: "POST",
+    data: newComment
+  }).then(
+    function () {
+      console.log("posting new comment");
+      // window.location.href = "/saved";
+    }
+  );
+})

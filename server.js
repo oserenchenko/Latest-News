@@ -41,7 +41,9 @@ mongoose.connect(MONGODB_URI);
 
 
 app.get("/", function (req, res) {
-  db.Article.find({})
+  db.Article.find({
+      saved: false
+    })
     .then(function (dbArticle) {
       res.render("index", {
         articles: dbArticle
@@ -129,6 +131,32 @@ app.put("/save/:id", function (req, res) {
     if (err) return handleError(err);
     res.send(dbArticle);
   });
+})
+
+//pulling up comments for article
+app.post("/comments/:id", function (req, res) {
+  var objectID = req.params.id;
+
+  db.Comment.create(req.body)
+    .then(function (dbComment) {
+      return db.Article.findOneAndUpdate({
+        _id: objectID
+      }, {
+        comment: dbComment._id
+      }, {
+        new: true
+      });
+    })
+    .catch(function (err) {
+      res.json(err);
+    })
+  // db.Article.findOne({_id: objectID})
+  // .populate("comment")
+  // .then(function(dbArticle) {
+  //   res.render("saved", {
+  //     comments: dbArticle
+  //   })
+  // })
 })
 
 

@@ -20,22 +20,50 @@
 </div>
 
 <div class="container">
-  <h2>Save Articles:</h2>
+  <h2>Saved Articles:</h2>
   <div class="articles-displayed">
     {{#each articles}}
     <div class="row mt-3 mb-3">
-      <div class="col-md-8">
+      <div class="col-md-4">
+        <h5>Article:</h5>
         <p class="title">{{this.title}}</p>
         <p class="type smallDetail">{{this.type}} | </p>
         <p class="date smallDetail">{{this.date}} | </p>
         <a class="link smallDetail" href={{this.link}}>Read Article</a>
-        <p class="summary">{{this.summary}}</p>
-        <button type="button" class="btn btn-info" id="commentArticle" objectID={{this._id}}>Comment</button>
+        <img src={{this.image}} class="imageComment">
       </div>
       <div class="col-md-4">
-        <img src={{this.image}} class="image">
+        <h5>Comments:</h5>
+        <div class="commentsSaved">
+          {{#each comments}}
+
+          {{/each}}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h5>Leave a Comment</h5>
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Name</label>
+            <textarea class="form-control commentName" rows="1"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Comment</label>
+            <textarea class="form-control commentMessage" rows="2"></textarea>
+          </div>
+        </form>
+        <button type="button" class="btn btn-info btn-sm" id="commentArticle" objectID={{this._id}}>Comment</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <hr>
       </div>
     </div>
     {{/each}}
   </div>
 </div>
+
+{{#each comments}}
+<p>{{this}}</p>
+{{/each}}
