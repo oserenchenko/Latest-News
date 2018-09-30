@@ -20,12 +20,12 @@
 </div>
 
 <div class="container">
-  <h2>Saved Articles:</h2>
+  <h2>SAVED ARTICLES:</h2>
   <div class="articles-displayed">
     {{#each articles}}
     <div class="row mt-3 mb-3">
       <div class="col-md-4">
-        <h5>Article:</h5>
+        <h5>Article</h5>
         <p class="title">{{this.title}}</p>
         <p class="type smallDetail">{{this.type}} | </p>
         <p class="date smallDetail">{{this.date}} | </p>
@@ -33,11 +33,11 @@
         <img src={{this.image}} class="imageComment">
       </div>
       <div class="col-md-4">
-        <h5>Comments:</h5>
+        <h5>Comments</h5>
         <div class="commentsSaved">
           {{#each this.comment}}
           <p class="commentNameSaved">{{this.name}}:</p>
-          <button type="button" class="btn btn-danger btn-sm deleteComment" objectID = {{this._id}}>X</button>
+          <button type="button" class="btn btn-danger btn-sm deleteComment" objectID={{this._id}}>X</button>
           <p class="commentMessageSaved">"{{this.message}}"</p>
           {{/each}}
         </div>
@@ -65,7 +65,3 @@
     {{/each}}
   </div>
 </div>
-
-{{#each comments}}
-<p>{{this}}</p>
-{{/each}}

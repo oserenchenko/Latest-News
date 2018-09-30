@@ -1,11 +1,27 @@
 .jumbotron {
-  /* background-image: url(images/stack.jpg);
-  background-size: contain; */
-  /* background-repeat: no-repeat; */
+  background-image: url(images/news.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
 }
 
-.jumbo {
-  margin-left: 150px;
+hr {
+  overflow: visible;
+  height: 30px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px 0 0 0;
+  border-radius: 20px;
+}
+hr:before { /* Not really supposed to work, but does */
+  display: block;
+  content: "";
+  height: 30px;
+  margin-top: -31px;
+  border-style: solid;
+  border-color: black;
+  border-width: 0 0 1px 0;
+  border-radius: 20px;
 }
 
 .title {
@@ -43,3 +59,4 @@
   display: inline;
   font-size: 8px;
 }
+
