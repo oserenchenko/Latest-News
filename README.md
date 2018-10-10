@@ -43,7 +43,7 @@ in your preferred web browser
 * [MongoDB/Mongoose](https://mongoosejs.com/) - database and object modeling
 * [Node.js](https://nodejs.org/en/) - JS runtime
 * [Express](https://expressjs.com/) - web framework for Node.js
-* [Cherio](https://github.com/cheeriojs/cheerio) - npm dependency for scraping websites
+* [Cheerio](https://github.com/cheeriojs/cheerio) - npm dependency for scraping websites
 * [NPR News](https://www.npr.org/sections/news/) - news source
 
 ______________
