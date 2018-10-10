@@ -4,7 +4,7 @@ This app scrapes the NPR News website on button click. The user then has the abi
 ______________
 ______________
 ______________
-## Visit the deployed version of Nomad-Travelr
+## Visit the deployed version of Latest-News
 [Latest News](https://quiet-brushlands-27926.herokuapp.com/)
 
 ![homepage]()
