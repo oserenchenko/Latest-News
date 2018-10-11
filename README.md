@@ -7,7 +7,7 @@ ______________
 ## Visit the deployed version of Latest-News
 [Latest News](https://quiet-brushlands-27926.herokuapp.com/)
 
-![homepage]()
+![latest-news](latest_news.gif)
 
 ______________
 ______________
